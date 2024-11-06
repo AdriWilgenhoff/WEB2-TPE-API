@@ -26,7 +26,7 @@
             $user_pass = base64_decode($auth_header[1]); // "usuario:password"
             $user_pass = explode(':', $user_pass); // ["usuario", "password"]
             // Buscamos El usuario en la base
-            $user = $this->model->getUserByEmail($user_pass[0]);
+            $user = $this->model->getUser($user_pass[0]);
             // Chequeamos la contraseña
             if($user == null || !password_verify($user_pass[1], $user->password)) {
                 return $this->view->response("Error en los datos ingresados", 400);
@@ -34,7 +34,7 @@
             // Generamos el token
             $token = createJWT(array(
                 'sub' => $user->id,
-                'email' => $user->email,
+                'email' => $user->username,
                 'role' => 'admin',
                 'iat' => time(),
                 'exp' => time() + 60,
