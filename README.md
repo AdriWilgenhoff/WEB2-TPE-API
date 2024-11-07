@@ -7,10 +7,12 @@
 ## Temática
 Atracciones Turistícas
 
-## Documentación API
-Esta API REST permite manejar el ABM de las atracciones turisticas. En el repositorio está incluido el Postman Collection para facilitar las pruebas.
+## Descripción
+Este proyecto consiste en una API REST para gestionar atracciones turísticas, permitiendo realizar operaciones de alta, baja y modificación (ABM) de atracciones. Incluye un archivo de colección de Postman para facilitar las pruebas.
 
-### Resumen Endpoints 
+## Documentación de la API
+
+### Endpoints 
 |       Request         | Método |                    Endpoint                       | Status |
 |-----------------------|--------|---------------------------------------------------|--------|
 | Listar atracciones    | GET    | http://localhost/WEB2-TPE-API/api/atraccion       | 200    |
@@ -19,11 +21,15 @@ Esta API REST permite manejar el ABM de las atracciones turisticas. En el reposi
 | Editar atraccion      | PUT    | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 201    |
 | Obtener token         | GET    | http://localhost/WEB2-TPE-API/api/usuarios/token  | 200    | 
 
+### Detalle de Endpoints
+
 ### Listar Atracciones (GET)
+Devuelve una lista de todas las atracciones turísticas disponibles.
+
 ```http
 GET /api/atraccion
 ```
-Response:
+Response
 ```json
 [
     {
@@ -50,7 +56,9 @@ Response:
 ]
 ```
 
-### Obtener Atraccion (GET)
+### Obtener Atracción (GET)
+Obtiene los detalles de una atracción específica mediante su ID.
+
 ```http
 GET /api/atraccion/:id
 ```
@@ -73,7 +81,9 @@ Response
 }
 ```
 
-### Crear Atraccion (POST)
+### Crear Atracción (POST)
+Crea una nueva atracción. Requiere autenticación.
+
 ```http
 POST /api/atraccion
 ```
@@ -92,16 +102,15 @@ Request Body
 }
 ```
   >[!NOTE]
-  > **La key "path_img" puede omitirse y de hacerlo se asignará una imagen por defecto.**
+  > **El campo path_img es opcional. Si se omite, se asignará una imagen predeterminada.**
 
   >[!NOTE]
-  > **Este endpoint de creacion requiere estar autenticado para usarse.**
-
-  >[!NOTE]
-  > **El id del Pais debe ser alguno de los que estan en la base de datos.**
+  > **Es necesario un country_id válido de la base de datos.
 
 
-### Editar Atraccion (PUT)
+### Editar Atracción (PUT)
+Edita los datos de una atracción existente mediante su ID. Requiere autenticación.
+
 ```http
 PUT /api/atraccion/:id
 ```
@@ -120,26 +129,29 @@ Request Body
 }
 ```
   >[!NOTE]
-  > **La key "path_img" puede omitirse y de hacerlo se mantiene la que tenía.**
+  > **Si path_img se omite, se conservará la imagen existente.**
 
   >[!NOTE]
-  > **Este endpoint de creacion requiere estar autenticado para usarse.**
-
-  >[!NOTE]
-  > **El id del Pais debe ser alguno de los que estan en la base de datos.**
+  > **Nota: Es necesario un country_id válido de la base de datos.**
 
 ### Obtener Token (POST)
+Genera un token de autenticación mediante credenciales de usuario.
+
 ```http
 POST /api/usuarios/token
 ```
-Devuelve, de ser correctos los datos introducidos (usuario y contraseña),  un token que permite autenticarse.
+Credenciales (Basic Auth)
 
 Los datos requeridos para la generacion del mismo se deberan completar en los campos que ofrece Authorization, Type: Basic Auth. 
 - `username`: webadmin
 - `password`: admin
 
-Response:
+Response 
+El token JWT para autenticación en los endpoints protegidos:
+```json
 "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzA5NDUxMTIsImV4cCI6MTczMDk0NTE3MiwiU2FsdWRvIjoiSG9sYSJ9.gJaYtnVp9T5a-IQE4t8YObUVJ0g2qmyjdTra0du9KFI"
-  
-El token generado es requerido para utilizar los request de tipo POST y PUT. 
+```
+
+  >[!NOTE]
+  > **Nota: Este token es requerido para los endpoints POST y PUT.**
 
