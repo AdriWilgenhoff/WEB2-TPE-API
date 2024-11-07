@@ -87,7 +87,7 @@ Puedes filtrar los resultados según el valor de una columna específica.
   | Parámetro |  Ejemplo | Descripción | Valor por defecto |
   |----------|----------|----------|----------|
   | `filter`    |  filter=nombre   | Columna de la tabla por la cual se desea filtrar.| nombre |
-  | `filterValue`    | filterValue=Pad   | Valor de búsqueda para aplicar en la columna especificada.|  |
+  | `value`    | value=Big Ben   | Valor de búsqueda para aplicar en la columna especificada.| "" (sin valor) |
 
 A continuación, un ejemplo de cómo combinar todos los parámetros de consulta en una sola solicitud:
 ```
