@@ -58,44 +58,36 @@ Response
 ### Parámetros de consulta
 A continuación, se detallan los parámetros disponibles para ordenar, paginar y filtrar los resultados en la API de atracciones turísticas.
 
+Si los parámetros `filter`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán los siguientes valores por defecto:
+
 ### Orden
 Puedes ordenar los resultados por cualquier columna y especificar el orden ascendente o descendente.
+
 `GET /api/atraccion?sort={columna}&order={valor}`
 
-  | Parámetro | Tipo | Ejemplo | Descripción |
-  |----------|----------|----------|----------|
-  | `sort`    | String   | sort=nombre   | Ordena los resultados por la columna especificada en `{columna}` de la tabla.|
-  | `order`    | String   | order=desc   | Especidfica el sentido del orden. Valores permitidos: `asc` (ascendente) o `desc` (descendente).|
+  | Parámetro | Ejemplo | Descripción | Valor por defecto |
+  |----------|----------|----------|----------|----------|
+  | `sort`    | sort=nombre   | Ordena los resultados por la columna especificada en `{columna}` de la tabla.| id |
+  | `order`    | order=desc   | Especidfica el sentido del orden. Valores permitidos: `asc` (ascendente) o `desc` (descendente).| asc |
 
 ### Paginación
 Permite limitar la cantidad de resultados por página y seleccionar la página deseada.
+
 `GET /api/atraccion?page={valor}&limit={valor}`
 
-  | Parámetro | Tipo | Ejemplo | Descripción |
-  |----------|----------|----------|----------|
-  | `page`    | String   | page=2   | Número de página que se desea mostrar.|
-  | `limit`    | String   | limit=3   | Cantidad de atracciones por página.|
+  | Parámetro | Ejemplo | Descripción | Valor por defecto |
+  |----------|----------|----------|----------|----------|
+  | `page`    |  page=2   | Número de página que se desea mostrar.| 1 |
+  | `limit`    | limit=3   | Cantidad de atracciones por página.| 3 |
 
 ### Filtrado
 Puedes filtrar los resultados según el valor de una columna específica.
+
 `GET /api/atraccion?filter={valor}&value={valor}`
-  | Parámetro | Tipo | Ejemplo | Descripción |
-  |----------|----------|----------|----------|
-  | `filter`    | String   | filter=nombre   | Columna de la tabla por la cual se desea filtrar.|
-  | `filterValue`    | String   | filterValue=Pad   | Valor de búsqueda para aplicar en la columna especificada.|
-
-### Valores por defecto
-
-Si los parámetros `filter`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán los siguientes valores por defecto:
-
-  | Parámetro | Tipo | Ejemplo | Valor por defecto |
-  |----------|----------|----------|----------|
-  | `filter`    | String   | page   | nombre |
-  | `filterValue`    | String   | page   |  |
-  | `sort`    | String   | sort   | id_producto |
-  | `order`    | String   | sort   | asc |
-  | `page`    | String   | page  | 1 |
-  | `limit`    | String   | page  | 3 |
+  | Parámetro |  Ejemplo | Descripción | Valor por defecto |
+  |----------|----------|----------|----------|----------|
+  | `filter`    |  filter=nombre   | Columna de la tabla por la cual se desea filtrar.| nombre |
+  | `filterValue`    | filterValue=Pad   | Valor de búsqueda para aplicar en la columna especificada.|  |
 
 A continuación, un ejemplo de cómo combinar todos los parámetros de consulta en una sola solicitud:
 ```
