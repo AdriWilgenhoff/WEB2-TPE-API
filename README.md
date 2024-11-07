@@ -128,5 +128,18 @@ Request Body
   >[!NOTE]
   > **El id del Pais debe ser alguno de los que estan en la base de datos.**
 
+### Obtener Token (POST)
+```http
+POST /api/usuarios/token
+```
+Devuelve, de ser correctos los datos introducidos (usuario y contraseña),  un token que permite autenticarse.
 
+Los datos requeridos para la generacion del mismo se deberan completar en los campos que ofrece Authorization, Type: Basic Auth. 
+- `username`: webadmin
+- `password`: admin
+
+Response:
+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzA5NDUxMTIsImV4cCI6MTczMDk0NTE3MiwiU2FsdWRvIjoiSG9sYSJ9.gJaYtnVp9T5a-IQE4t8YObUVJ0g2qmyjdTra0du9KFI"
+  
+El token generado es requerido para utilizar los request de tipo POST y PUT. 
 
