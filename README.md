@@ -23,7 +23,7 @@ Este proyecto consiste en una API REST para gestionar atracciones turísticas, p
 
 ### Detalle de Endpoints
 
-### Listar Atracciones (GET)
+## Listar Atracciones (GET)
 Devuelve una lista de todas las atracciones turísticas disponibles.
 
 ```http
@@ -65,10 +65,10 @@ Puedes ordenar los resultados por cualquier columna y especificar el orden ascen
 
 `GET /api/atraccion?sort={columna}&order={valor}`
 
-  | Parámetro | Ejemplo | Descripción | Valor por defecto |
-  |----------|----------|----------|----------|----------|
-  | `sort`    | sort=nombre   | Ordena los resultados por la columna especificada en `{columna}` de la tabla.| id |
-  | `order`    | order=desc   | Especidfica el sentido del orden. Valores permitidos: `asc` (ascendente) o `desc` (descendente).| asc |
+  | Parámetro  | Ejemplo     | Descripción | Valor por defecto |
+  |----------  |----------   |----------|----------|
+  | `sort`     | sort=nombre | Ordena los resultados por la columna especificada en `{columna}` de la tabla.| id |
+  | `order`    | order=desc  | Especidfica el sentido del orden. Valores permitidos: `asc` (ascendente) o `desc` (descendente).| asc |
 
 ### Paginación
 Permite limitar la cantidad de resultados por página y seleccionar la página deseada.
@@ -76,7 +76,7 @@ Permite limitar la cantidad de resultados por página y seleccionar la página d
 `GET /api/atraccion?page={valor}&limit={valor}`
 
   | Parámetro | Ejemplo | Descripción | Valor por defecto |
-  |----------|----------|----------|----------|----------|
+  |----------|----------|----------|----------|
   | `page`    |  page=2   | Número de página que se desea mostrar.| 1 |
   | `limit`    | limit=3   | Cantidad de atracciones por página.| 3 |
 
@@ -85,7 +85,7 @@ Puedes filtrar los resultados según el valor de una columna específica.
 
 `GET /api/atraccion?filter={valor}&value={valor}`
   | Parámetro |  Ejemplo | Descripción | Valor por defecto |
-  |----------|----------|----------|----------|----------|
+  |----------|----------|----------|----------|
   | `filter`    |  filter=nombre   | Columna de la tabla por la cual se desea filtrar.| nombre |
   | `filterValue`    | filterValue=Pad   | Valor de búsqueda para aplicar en la columna especificada.|  |
 
@@ -94,7 +94,7 @@ A continuación, un ejemplo de cómo combinar todos los parámetros de consulta 
 GET /api/atraccion?filter=nombre&filterValue=BigBen&sort=nombre&order=asc&page=1&limit=3
 ``` 
 
-### Obtener Atracción (GET)
+## Obtener Atracción (GET)
 Obtiene los detalles de una atracción específica mediante su ID.
 
 ```http
@@ -146,7 +146,7 @@ Request Body
   > **Es necesario un `country_id` válido de la base de datos.**
 
 
-### Editar Atracción (PUT)
+## Editar Atracción (PUT)
 Edita los datos de una atracción existente mediante su ID. ⚠️ Requiere autenticación.
 
 ```http
@@ -172,7 +172,7 @@ Request Body
   >[!NOTE]
   > **Nota: Es necesario un `country_id` válido de la base de datos.**
 
-### Obtener Token (POST)
+## Obtener Token (POST)
 Genera un token de autenticación mediante credenciales de usuario.
 
 ```http
