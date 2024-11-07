@@ -102,10 +102,10 @@ Request Body
 }
 ```
   >[!NOTE]
-  > **El campo path_img es opcional. Si se omite, se asignará una imagen predeterminada.**
+  > **El campo `path_img` es opcional. Si se omite, se asignará una imagen predeterminada.**
 
   >[!NOTE]
-  > **Es necesario un country_id válido de la base de datos.
+  > **Es necesario un `country_id` válido de la base de datos.**
 
 
 ### Editar Atracción (PUT)
@@ -129,10 +129,10 @@ Request Body
 }
 ```
   >[!NOTE]
-  > **Si path_img se omite, se conservará la imagen existente.**
+  > **Si `path_img` se omite, se conservará la imagen existente.**
 
   >[!NOTE]
-  > **Nota: Es necesario un country_id válido de la base de datos.**
+  > **Nota: Es necesario un `country_id` válido de la base de datos.**
 
 ### Obtener Token (POST)
 Genera un token de autenticación mediante credenciales de usuario.
@@ -146,12 +146,13 @@ Los datos requeridos para la generacion del mismo se deberan completar en los ca
 - `username`: webadmin
 - `password`: admin
 
-Response 
-El token JWT para autenticación en los endpoints protegidos:
+Response
+
+Token JWT para autenticación en los endpoints protegidos:
 ```json
-"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzA5NDUxMTIsImV4cCI6MTczMDk0NTE3MiwiU2FsdWRvIjoiSG9sYSJ9.gJaYtnVp9T5a-IQE4t8YObUVJ0g2qmyjdTra0du9KFI"
+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzA5........."
 ```
 
   >[!NOTE]
-  > **Nota: Este token es requerido para los endpoints POST y PUT.**
+  > **Nota: Este token es requerido para los endpoints `POST` y `PUT`.**
 
