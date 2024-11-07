@@ -7,12 +7,8 @@
 ## Temática
 Atracciones Turistícas
 
-## Descripcion
-Este sitio web ofrece una guía informativa sobre las principales atracciones turísticas del mundo, organizadas por países. Los usuarios pueden explorar diversos destinos, descubrir lugares emblemáticos, y obtener información detallada sobre cada atracción, como su ubicación, descripción, horarios y precios de entrada.
-
 ## Documentación API
 Esta API REST permite manejar el ABM de las atracciones turisticas. En el repositorio está incluido el Postman Collection para facilitar las pruebas.
-
 
 ### Resumen Endpoints 
 |       Request         | Método |                    Endpoint                       | Status |
@@ -96,16 +92,18 @@ Request Body
 }
 ```
   >[!NOTE]
-  > **La imagen no es requerida, por lo que, en caso de no asignarse una, se pondra una por defecto.**
+  > **La key "path_img" puede omitirse y de hacerlo se asignará una imagen por defecto.**
+
   >[!NOTE]
   > **Este endpoint de creacion requiere estar autenticado para usarse.**
+
   >[!NOTE]
   > **El id del Pais debe ser alguno de los que estan en la base de datos.**
 
 
 ### Editar Atraccion (PUT)
 ```http
-POST /api/atraccion/:id
+PUT /api/atraccion/:id
 ```
 Request Body
 ```json
@@ -122,9 +120,11 @@ Request Body
 }
 ```
   >[!NOTE]
-  > **La imagen no es requerida, por lo que, en caso de no asignarse una, se mantiene la que tenia.**
+  > **La key "path_img" puede omitirse y de hacerlo se mantiene la que tenía.**
+
   >[!NOTE]
   > **Este endpoint de creacion requiere estar autenticado para usarse.**
+
   >[!NOTE]
   > **El id del Pais debe ser alguno de los que estan en la base de datos.**
 
