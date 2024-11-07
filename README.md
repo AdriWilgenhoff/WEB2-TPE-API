@@ -15,11 +15,11 @@ Este proyecto consiste en una API REST para gestionar atracciones turísticas, p
 ### Endpoints 
 |       Request         | Método |                    Endpoint                       | Status |
 |-----------------------|--------|---------------------------------------------------|--------|
-| Listar atracciones    | GET    | http://localhost/WEB2-TPE-API/api/atraccion       | 200    |
-| Obtener atraccion     | GET    | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 200    |
-| Crear atraccion       | POST   | http://localhost/WEB2-TPE-API/api/atraccion       | 201    |
-| Editar atraccion      | PUT    | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 201    |
-| Obtener token         | GET    | http://localhost/WEB2-TPE-API/api/usuarios/token  | 200    | 
+| Listar atracciones    |  GET   | http://localhost/WEB2-TPE-API/api/atraccion       | 200    |
+| Obtener atraccion     |  GET   | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 200    |
+| Crear atraccion       |  POST  | http://localhost/WEB2-TPE-API/api/atraccion       | 201    |
+| Editar atraccion      |  PUT   | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 201    |
+| Obtener token         |  GET   | http://localhost/WEB2-TPE-API/api/usuarios/token  | 200    | 
 
 ### Detalle de Endpoints
 
@@ -55,61 +55,51 @@ Response
      ...
 ]
 ```
-
-### Este endpoint permite distintos tipos de querys params, asi también como su combinación.
-
-### Parámetros 
-
-| Parámetro    | Descripción                                     | Valor por Defecto |
-|--------------|-------------------------------------------------|-------------------|
-| filter       | Permite filtrar los resultados basados en un campo específico       | -                 |
-| rvalue  | Valor por el cual se realiza el filtrado.       | -                 |
-| sort      | Permite ordenar los resultados según un campo específico      | id                |
-| order        | Tipo de ordenamiento (ascendente o descendente). | desc              |
-| page         | Número de página que se desea observar.         | 1                 |
-| limit        | Cantidad de registros mostrados por página.     | 4                 |
+### Parámetros de consulta
+A continuación, se detallan los parámetros disponibles para ordenar, paginar y filtrar los resultados en la API de atracciones turísticas.
 
 ### Orden
-`GET /api/atraccion?sort={valor}&order={valor}`
+Puedes ordenar los resultados por cualquier columna y especificar el orden ascendente o descendente.
+`GET /api/atraccion?sort={columna}&order={valor}`
 
   | Parámetro | Tipo | Ejemplo | Descripción |
   |----------|----------|----------|----------|
-  | `sort`    | String   | sort=nombre   | Valor nombre de la columna. Se realizara el ordenamientopor la columna [nombre] de la tabla.|
-  | `order`    | String   | order=desc   | Valor de búsqueda. Se aplicara el ordenamiento en orden descendente. Posibles valores admitidos [asc/desc]. |
+  | `sort`    | String   | sort=nombre   | Ordena los resultados por la columna especificada en `{columna}` de la tabla.|
+  | `order`    | String   | order=desc   | Especidfica el sentido del orden. Valores permitidos: `asc` (ascendente) o `desc` (descendente).|
 
 ### Paginación
+Permite limitar la cantidad de resultados por página y seleccionar la página deseada.
 `GET /api/atraccion?page={valor}&limit={valor}`
 
   | Parámetro | Tipo | Ejemplo | Descripción |
   |----------|----------|----------|----------|
-  | `page`    | String   | page=2   | Número de página a mostrar.|
-  | `limit`    | String   | limit=3   | Límite de elementos mostrados por página. |
+  | `page`    | String   | page=2   | Número de página que se desea mostrar.|
+  | `limit`    | String   | limit=3   | Cantidad de atracciones por página.|
 
 ### Filtrado
+Puedes filtrar los resultados según el valor de una columna específica.
 `GET /api/atraccion?filter={valor}&value={valor}`
   | Parámetro | Tipo | Ejemplo | Descripción |
   |----------|----------|----------|----------|
-  | `filter`    | String   | filter=nombre   | Valor nombre de la columna. Se realizara el filtro por la columna [nombre] de la tabla.|
-  | `filterValue`    | String   | filterValue=Pad   | Valor de búsqueda. Se aplicara el filtro en la columna [nombre] por el valor [Pad]. |
+  | `filter`    | String   | filter=nombre   | Columna de la tabla por la cual se desea filtrar.|
+  | `filterValue`    | String   | filterValue=Pad   | Valor de búsqueda para aplicar en la columna especificada.|
 
 ### Valores por defecto
 
-  Cuando se hace uso de la cadena de parametro principal filter, sort, page y estos no toman ningun valor o no se encuentra el parámetro compañero, se toman los siguientes valores por defecto. Lo mismo aplica para los parametros secundarios.
+Si los parámetros `filter`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán los siguientes valores por defecto:
 
   | Parámetro | Tipo | Ejemplo | Valor por defecto |
   |----------|----------|----------|----------|
-  | filter    | String   | page   | nombre |
-  | filterValue    | String   | page   |  |
-  | sort    | String   | sort   | id_producto |
-  | order    | String   | sort   | asc |
-  | page    | String   | page  | 1 |
-  | limit    | String   | page  | 3 |
+  | `filter`    | String   | page   | nombre |
+  | `filterValue`    | String   | page   |  |
+  | `sort`    | String   | sort   | id_producto |
+  | `order`    | String   | sort   | asc |
+  | `page`    | String   | page  | 1 |
+  | `limit`    | String   | page  | 3 |
 
-La combinación de todos los parámetros se encuentra disponible. Ejemplo: 
-
-Ejemplo combinando todos los querys params: 
+A continuación, un ejemplo de cómo combinar todos los parámetros de consulta en una sola solicitud:
 ```
-GET api/atraccion?filter=[valor]&filterValue=[valor]&sort=[valor]&oder=[valor]&page=[valor]&limit=[valor]
+GET /api/atraccion?filter=nombre&filterValue=BigBen&sort=nombre&order=asc&page=1&limit=3
 ``` 
 
 ### Obtener Atracción (GET)
