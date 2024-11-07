@@ -17,6 +17,6 @@
     $router->addRoute('atraccion/:id'  ,            'PUT',     'AttractionApiController',   'update');
     $router->addRoute('atraccion/:id/finalizada'  , 'PUT',     'AttractionApiController',   'setFinalize');
     
-    $router->addRoute('usuarios/token'    ,            'GET',     'UserApiController',   'getToken');
+    $router->addRoute('user/token'    ,            'POST',     'UserApiController',   'getToken');
 
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

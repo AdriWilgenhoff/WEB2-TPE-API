@@ -19,8 +19,11 @@ class AttractionApiController
 	public function getByID($req, $res) {
         $id = $req->params->id;
         $attraction = $this->model->getAttractionById($id);
+		
         if(!$attraction)
             return $this->view->response("La atraccion con el id=$id no existe", 404);
+		
+		$attraction->country = $this->countryModel->getCountryById($attraction->country);
         return $this->view->response($attraction);
     }
 	

@@ -3,7 +3,7 @@ require_once 'db.model.php';
 
 class AttractionModel extends Model {
 	
-	function getAttractions($orderBy, $page, $limit, $filterField, $filterValue) {
+	function getAttractions($orderBy, $page, $limit/*, $filterField, $filterValue*/) {
 		
 		$sql = "SELECT attractions.*, countries.name AS country FROM attractions INNER JOIN countries ON attractions.country_id = countries.id";
 		
@@ -46,12 +46,15 @@ class AttractionModel extends Model {
 			$sql .= ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$limit*((int)$page-1);
 		}
         $query = $this->db->prepare($sql);
-        $query->execute([$filterValue]);  
+        $query->execute();  
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
     
     public function getAttractionById($id) {
-        $query = $this->db->prepare("SELECT attractions.*, countries.name AS country, countries.id AS idCountry, countries.currency AS currency FROM attractions INNER JOIN countries ON attractions.country_id = countries.id WHERE attractions.id = ?");
+        /*$query = $this->db->prepare("SELECT attractions.*, attractions.country_id AS country FROM attractions INNER JOIN countries ON attractions.country_id = countries.id WHERE attractions.id = ?");*/
+		
+		$query = $this->db->prepare("SELECT id, name, location, price, path_img, description, open_time, close_time, website, country_id AS country FROM attractions WHERE attractions.id = ?");
+		
         $query->execute([$id]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
