@@ -82,7 +82,7 @@ Response
 ```
 
 ### Crear Atracción (POST)
-Crea una nueva atracción. Requiere autenticación.
+Crea una nueva atracción. ⚠️ Requiere autenticación.
 
 ```http
 POST /api/atraccion
@@ -109,7 +109,7 @@ Request Body
 
 
 ### Editar Atracción (PUT)
-Edita los datos de una atracción existente mediante su ID. Requiere autenticación.
+Edita los datos de una atracción existente mediante su ID. ⚠️ Requiere autenticación.
 
 ```http
 PUT /api/atraccion/:id
@@ -148,11 +148,8 @@ Los datos requeridos para la generacion del mismo se deberan completar en los ca
 
 Response
 
-Token JWT para autenticación en los endpoints protegidos:
+Token para autenticación en los endpoints `POST` y `PUT`:
 ```json
-"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzA5........."
+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2LCJpYXQiOjE3MzA5........."
 ```
-
-  >[!NOTE]
-  > **Nota: Este token es requerido para los endpoints `POST` y `PUT`.**
 
