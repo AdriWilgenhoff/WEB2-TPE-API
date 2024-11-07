@@ -56,7 +56,7 @@ Response
 ]
 ```
 
-### Este endpoint permite distintos tipos de querys params, al igual que su combinación.
+### Este endpoint permite distintos tipos de querys params, asi también como su combinación.
 
 ### Parámetros 
 
@@ -69,36 +69,48 @@ Response
 | page         | Número de página que se desea observar.         | 1                 |
 | limit        | Cantidad de registros mostrados por página.     | 4                 |
 
-Ejemplo: 
+### Orden
+`GET /api/atraccion?sort={valor}&order={valor}`
+
+  | Parámetro | Tipo | Ejemplo | Descripción |
+  |----------|----------|----------|----------|
+  | `sort`    | String   | sort=nombre   | Valor nombre de la columna. Se realizara el ordenamientopor la columna [nombre] de la tabla.|
+  | `order`    | String   | order=desc   | Valor de búsqueda. Se aplicara el ordenamiento en orden descendente. Posibles valores admitidos [asc/desc]. |
+
+### Paginación
+`GET /api/atraccion?page={valor}&limit={valor}`
+
+  | Parámetro | Tipo | Ejemplo | Descripción |
+  |----------|----------|----------|----------|
+  | `page`    | String   | page=2   | Número de página a mostrar.|
+  | `limit`    | String   | limit=3   | Límite de elementos mostrados por página. |
+
+### Filtrado
+`GET /api/atraccion?filter={valor}&value={valor}`
+  | Parámetro | Tipo | Ejemplo | Descripción |
+  |----------|----------|----------|----------|
+  | `filter`    | String   | filter=nombre   | Valor nombre de la columna. Se realizara el filtro por la columna [nombre] de la tabla.|
+  | `filterValue`    | String   | filterValue=Pad   | Valor de búsqueda. Se aplicara el filtro en la columna [nombre] por el valor [Pad]. |
+
+### Valores por defecto
+
+  Cuando se hace uso de la cadena de parametro principal filter, sort, page y estos no toman ningun valor o no se encuentra el parámetro compañero, se toman los siguientes valores por defecto. Lo mismo aplica para los parametros secundarios.
+
+  | Parámetro | Tipo | Ejemplo | Valor por defecto |
+  |----------|----------|----------|----------|
+  | filter    | String   | page   | nombre |
+  | filterValue    | String   | page   |  |
+  | sort    | String   | sort   | id_producto |
+  | order    | String   | sort   | asc |
+  | page    | String   | page  | 1 |
+  | limit    | String   | page  | 3 |
+
+La combinación de todos los parámetros se encuentra disponible. Ejemplo: 
+
+Ejemplo combinando todos los querys params: 
 ```
-GET '/api/atraccion?sort=nombre&order=desc'
-GET '/api/atraccion?filter=nombre&condition=new'
-GET '/api/atraccion?filter=precio&comparison=greater&condition=1500'
-```
-
-# Orden
-`GET /api/atraccion?sort=nombre&order=desc`
-
-    Obtiene una lista con todos los productos disponibles ordenados por un campo y un orden determinado. 
-    De no existir el campo y/o el orden devuelve la lista normal.
-Parámetros:
-`sort`: campo por el cual se ordena
-`order`: tipo de orden (asc o desc)
-
-# Paginación
-
-`GET /api/atraccion?page=6&limit=2`
-    Obtiene una lista de tamaño limitado por los parametros de paginacion. 
- Parámetros:
-    `page`: numero de página. 
-    `limit`: la cantidad de elementos a mostrar por página.
-
-# Filtro
-`GET /api/atraccion?filter=precio&value=1000`
-Parámetros:
-
-    Obtiene una lista filtrada por el campo deseado. 
-    Ejemplo: Precio = $1000.   
+GET api/atraccion?filter=[valor]&filterValue=[valor]&sort=[valor]&oder=[valor]&page=[valor]&limit=[valor]
+``` 
 
 ### Obtener Atracción (GET)
 Obtiene los detalles de una atracción específica mediante su ID.
