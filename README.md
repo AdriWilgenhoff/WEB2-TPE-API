@@ -19,7 +19,7 @@ Este proyecto consiste en una API REST para gestionar atracciones turísticas, p
 | Obtener atraccion     |  GET   | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 200    |
 | Crear atraccion       |  POST  | http://localhost/WEB2-TPE-API/api/atraccion       | 201    |
 | Editar atraccion      |  PUT   | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 201    |
-| Obtener token         |  GET   | http://localhost/WEB2-TPE-API/api/usuarios/token  | 200    | 
+| Obtener token         |  GET   | http://localhost/WEB2-TPE-API/api/user/token      | 200    | 
 
 ### Detalle de Endpoints
 
@@ -103,19 +103,21 @@ GET /api/atraccion/:id
 Response
 ```json
 {
-    "id": 3,
-    "name": "Big Ben",
-    "location": "London SW1A 0AA",
+    "id": 2,
+    "name": "Chichén Itzá",
+    "location": "Chichén Itzá, 97751 Yucatán",
     "price": "0.00",
-    "path_img": "images/66fdb27bb6f7b.jpg",
-    "description": "El Big Ben es uno de los símbolos......",
-    "open_time": "00:00:00",
-    "close_time": "00:00:00",
-    "website": "https://www.parliament.uk/bigben/",
-    "country_id": 1,
-    "country": "Inglaterra",
-    "idCountry": 1,
-    "currency": "Libra Esterlina (£)"
+    "path_img": "images/imagen-no-disponible.png",
+    "description": "Chichén Itzá, ubicada en la península de Yucatán, .....................",
+    "open_time": "08:00:00",
+    "close_time": "17:00:00",
+    "website": "https://www.inah.gob.mx/zonas/146-zona-arqueologica-de-chichen-itza",
+    "country": {
+        "id": 15,
+        "name": "Mexico",
+        "language": "Español",
+        "currency": "Peso Mexicano ($)"
+    }
 }
 ```
 
