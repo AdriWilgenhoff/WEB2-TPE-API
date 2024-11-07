@@ -56,6 +56,50 @@ Response
 ]
 ```
 
+### Este endpoint permite distintos tipos de querys params, al igual que su combinación.
+
+### Parámetros 
+
+| Parámetro    | Descripción                                     | Valor por Defecto |
+|--------------|-------------------------------------------------|-------------------|
+| filter       | Permite filtrar los resultados basados en un campo específico       | -                 |
+| rvalue  | Valor por el cual se realiza el filtrado.       | -                 |
+| sort      | Permite ordenar los resultados según un campo específico      | id                |
+| order        | Tipo de ordenamiento (ascendente o descendente). | desc              |
+| page         | Número de página que se desea observar.         | 1                 |
+| limit        | Cantidad de registros mostrados por página.     | 4                 |
+
+Ejemplo: 
+```
+GET '/api/atraccion?sort=nombre&order=desc'
+GET '/api/atraccion?filter=nombre&condition=new'
+GET '/api/atraccion?filter=precio&comparison=greater&condition=1500'
+```
+
+# Orden
+`GET /api/atraccion?sort=nombre&order=desc`
+
+    Obtiene una lista con todos los productos disponibles ordenados por un campo y un orden determinado. 
+    De no existir el campo y/o el orden devuelve la lista normal.
+Parámetros:
+`sort`: campo por el cual se ordena
+`order`: tipo de orden (asc o desc)
+
+# Paginación
+
+`GET /api/atraccion?page=6&limit=2`
+    Obtiene una lista de tamaño limitado por los parametros de paginacion. 
+ Parámetros:
+    `page`: numero de página. 
+    `limit`: la cantidad de elementos a mostrar por página.
+
+# Filtro
+`GET /api/atraccion?filter=precio&value=1000`
+Parámetros:
+
+    Obtiene una lista filtrada por el campo deseado. 
+    Ejemplo: Precio = $1000.   
+
 ### Obtener Atracción (GET)
 Obtiene los detalles de una atracción específica mediante su ID.
 
