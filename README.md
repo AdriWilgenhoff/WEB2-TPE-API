@@ -178,7 +178,7 @@ Request Body
 Genera un token de autenticación mediante credenciales de usuario.
 
 ```http
-POST /api/usuarios/token
+POST /api/user/token
 ```
 Credenciales (Basic Auth)
 
@@ -188,7 +188,7 @@ Los datos requeridos para la generacion del mismo se deberan completar en los ca
 
 Response
 
-Token para autenticación en los endpoints `POST` y `PUT`:
+Token para autenticación en los endpoints `POST` y `PUT`
 ```json
 "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2LCJpYXQiOjE3MzA5........."
 ```
