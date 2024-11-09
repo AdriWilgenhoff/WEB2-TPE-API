@@ -31,13 +31,13 @@ class AttractionApiController
 	public function getAll($req, $res) {
 		
 		//ordernamiento
-		$fieldsToOrder = ['name', 'location', 'price', 'description', 'open_time', 'close_time','website','country_id',];
+		$fieldsToOrder = ['name', 'location', 'price', 'description', 'open_time', 'close_time','website','country'];
 				
         if(isset($req->query->sort) && in_array($req->query->sort, $fieldsToOrder))
             $sort = $req->query->sort;
 		else
 			$sort = 'id';
-		
+
         if(isset($req->query->order) && ($req->query->order== 'asc' || $req->query->order== 'desc'))
             $order = $req->query->order;
 		else	
@@ -55,7 +55,7 @@ class AttractionApiController
 			$limit = 5;
 
 		//filtro
-		$fieldsToFilter = ['name', 'location', 'price', 'description', 'open_time', 'close_time','website','country',];
+		$fieldsToFilter = ['name', 'location', 'price', 'description', 'open_time', 'close_time','website','country'];
 		$filter = [];
 		foreach ($req->query as $clave => $valor){
 			if (in_array($clave, $fieldsToFilter))

@@ -15,8 +15,12 @@ class AttractionModel extends Model {
 					$sql .= ' AND a.' . $clave . ' = ?';
 			}
 				
-		if($sort)
-			$sql .= ' ORDER BY a.' . $sort . ' ' . $order;
+		if($sort){
+			if ($sort == 'country')
+				$sql .= ' ORDER BY c.name' . ' ' . $order;
+			else 
+				$sql .= ' ORDER BY a.' . $sort . ' ' . $order;
+		}
 		
 		if($page)
 			$sql .= ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$limit*((int)$page-1);
