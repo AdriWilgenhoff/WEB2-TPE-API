@@ -3,55 +3,30 @@ require_once 'db.model.php';
 
 class AttractionModel extends Model {
 	
-	function getAttractions($orderBy, $page, $limit/*, $filterField, $filterValue*/) {
+	function getAttractions($sort, $order, $page, $limit, $filters) {
 		
-		$sql = "SELECT attractions.*, countries.name AS country FROM attractions INNER JOIN countries ON attractions.country_id = countries.id";
+		$sql = "SELECT a.id, a.name, location, price, path_img, description, open_time, close_time, website, country_id AS country FROM attractions a  INNER JOIN countries c ON a.country_id = c.id WHERE 1=1";
 		
-		/*if($filterField) {
-            switch($filterField) {
-                case 'name':
-                    $sql .= ' WHERE name = ?';
-                    break;
-                case 'country':
-                    $sql .= ' WHERE country = ?';
-					break;
-				case 'price':
-                    $sql .= ' WHERE price = ?';
-					break;
-				case 'open_time':
-                    $sql .= ' WHERE open_time = ?';
-                    break;
-            }
-        }*/
+		if($filters)
+			foreach ($filters as $clave => $valor){
+				if ($clave == 'country')
+					$sql .= ' AND c.name' . ' = ?';
+				else 
+					$sql .= ' AND a.' . $clave . ' = ?';
+			}
+				
+		if($sort)
+			$sql .= ' ORDER BY a.' . $sort . ' ' . $order;
 		
-		
-		if($orderBy) {
-            switch($orderBy) {
-                case 'name':
-                    $sql .= ' ORDER BY name';
-                    break;
-                case 'country':
-                    $sql .= ' ORDER BY country';
-					break;
-				case 'price':
-                    $sql .= ' ORDER BY price';
-					break;
-				case 'open_time':
-                    $sql .= ' ORDER BY open_time';
-                    break;
-            }
-        }
-		
-		if($page && $limit){
+		if($page)
 			$sql .= ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$limit*((int)$page-1);
-		}
+	
         $query = $this->db->prepare($sql);
-        $query->execute();  
+        $query->execute(array_values($filters));  
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
     
     public function getAttractionById($id) {
-        /*$query = $this->db->prepare("SELECT attractions.*, attractions.country_id AS country FROM attractions INNER JOIN countries ON attractions.country_id = countries.id WHERE attractions.id = ?");*/
 		
 		$query = $this->db->prepare("SELECT id, name, location, price, path_img, description, open_time, close_time, website, country_id AS country FROM attractions WHERE attractions.id = ?");
 		

@@ -24,16 +24,19 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/atraccion/1",
+					"raw": "{{base_url}}/atraccion/2",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"atraccion",
-						"1"
+						"2"
 					],
 					"query": [
 						{
@@ -53,7 +56,24 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/atraccion?orderBy=country&page=3&limit=2",
+					"raw": "{{base_url}}/atraccion",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"atraccion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAttraction-Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/atraccion?page=1&limit=1",
 					"host": [
 						"{{base_url}}"
 					],
@@ -62,16 +82,101 @@
 					],
 					"query": [
 						{
-							"key": "orderBy",
-							"value": "country"
-						},
-						{
 							"key": "page",
-							"value": "3"
+							"value": "1"
 						},
 						{
 							"key": "limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAttraction-Sort",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/atraccion?sort=name&order=desc",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"atraccion"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "name"
+						},
+						{
+							"key": "order",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAttraction-Filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/atraccion?country=Inglaterra",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"atraccion"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Inglaterra"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAttraction-AllQuerys",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/atraccion?country=Inglaterra&sort=name&order=desc&page=2&limit=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"atraccion"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Inglaterra"
+						},
+						{
+							"key": "sort",
+							"value": "name"
+						},
+						{
+							"key": "order",
+							"value": "desc"
+						},
+						{
+							"key": "page",
 							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "1"
 						}
 					]
 				}
@@ -224,15 +329,15 @@
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/token",
+					"raw": "{{base_url}}/user/token",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"usuarios",
+						"user",
 						"token"
 					]
 				}

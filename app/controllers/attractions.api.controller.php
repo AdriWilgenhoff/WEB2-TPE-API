@@ -29,32 +29,47 @@ class AttractionApiController
 	
 	// /api/atraccion (GET)
 	public function getAll($req, $res) {
-		//ordenamiento
-		$orderBy = false;
-        if(isset($req->query->orderBy))
-            $orderBy = $req->query->orderBy;
 		
-		//limite del paginado
-		$limit = false;
+		//ordernamiento
+		$fieldsToOrder = ['name', 'location', 'price', 'description', 'open_time', 'close_time','website','country_id',];
+				
+        if(isset($req->query->sort) && in_array($req->query->sort, $fieldsToOrder))
+            $sort = $req->query->sort;
+		else
+			$sort = 'id';
+		
+        if(isset($req->query->order) && ($req->query->order== 'asc' || $req->query->order== 'desc'))
+            $order = $req->query->order;
+		else	
+			$order = 'asc';
+		
+		//paginacion - numero de pagina
 		$page = false;
-        if(isset($req->query->limit) && isset($req->query->page) ){
-            $limit = $req->query->limit;
+        if(isset($req->query->page) && ctype_digit($req->query->page) )
 			$page = $req->query->page;
+		
+		//paginacion - limite por pagina
+        if(isset($req->query->limit) && ctype_digit($req->query->limit) )
+            $limit = $req->query->limit;
+		else 
+			$limit = 5;
+
+		//filtro
+		$fieldsToFilter = ['name', 'location', 'price', 'description', 'open_time', 'close_time','website','country',];
+		$filter = [];
+		foreach ($req->query as $clave => $valor){
+			if (in_array($clave, $fieldsToFilter))
+				$filter[$clave] = $valor;
 		}
-		
-		//filtro por un campo
-		/*$filterField = false;
-		$filterValue = false;
-        if(isset($req->query->limit) && isset($req->query->page) ){
-            $filterField = $req->query->limit;
-			$filterValue = $req->query->page;
-		}*/
-		
-        $attractions = $this->model->getAttractions($orderBy, $page, $limit);
+
+        $attractions = $this->model->getAttractions($sort, $order ,$page, $limit, $filter);
 		if (empty($attractions))
             return $this->view->response("No hay atracciones", 204);
-
-        return $this->view->response($attractions, $orderBy);
+		
+		foreach ($attractions as $attraction)
+			$attraction->country = $this->countryModel->getCountryById($attraction->country);
+			
+        return $this->view->response($attractions);
     }
 	
 	// api/atraccion/:id (DELETE)
@@ -111,7 +126,7 @@ class AttractionApiController
 			 $attraction = $this->model->getAttractionById($id);
 			 return $this->view->response($attraction, 200); 
 		}
-		return $this->view->response('No se modifico la atraccion', 200);		
+		return $this->view->response('No se modifico la atraccion', 500);		
 	}
 	
 	//**************************************************************************
@@ -155,7 +170,7 @@ class AttractionApiController
 			 $attraction = $this->model->getAttractionById($id);
 			 return $this->view->response($attraction, 201); 
 		}
-		return $this->view->response('No se agrego la atraccion', 200);		
+		return $this->view->response('No se agrego la atraccion', 500);		
 	}
 		
 	//****************************************************************************//

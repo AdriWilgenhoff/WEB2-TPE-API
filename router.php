@@ -15,7 +15,6 @@
     $router->addRoute('atraccion/:id'  ,            'DELETE',  'AttractionApiController',   'delete');
     $router->addRoute('atraccion'  ,                'POST',    'AttractionApiController',   'create');
     $router->addRoute('atraccion/:id'  ,            'PUT',     'AttractionApiController',   'update');
-    $router->addRoute('atraccion/:id/finalizada'  , 'PUT',     'AttractionApiController',   'setFinalize');
     
     $router->addRoute('user/token'    ,            'POST',     'UserApiController',   'getToken');
 
