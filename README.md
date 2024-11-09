@@ -62,7 +62,7 @@ Response
 ### Parámetros de consulta
 A continuación, se detallan los parámetros disponibles para ordenar, paginar y filtrar los resultados en la API de atracciones turísticas.
 
-Si los parámetros `order`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán los siguientes valores por defecto:
+Si los parámetros `order`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán valores por defecto.
 
 ### Orden
 Puedes ordenar los resultados por cualquier columna y especificar el orden ascendente o descendente. Si no se setean los parametros `sort` y `order` se devuelve la lista de atracciones ordenadas por id de forma ascendente.
