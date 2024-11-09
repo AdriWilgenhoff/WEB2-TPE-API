@@ -65,7 +65,7 @@ A continuación, se detallan los parámetros disponibles para ordenar, paginar y
 Si los parámetros `order`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán valores por defecto.
 
 ### Orden
-Puedes ordenar los resultados por cualquier columna y especificar el orden ascendente o descendente. Si no se setean los parametros `sort` y `order` se devuelve la lista de atracciones ordenadas por id de forma ascendente.
+Puedes ordenar los resultados por cualquier columna (`name` `location` `description` `open_time` `close_time` `website` `country`) y especificar el orden ascendente o descendente. Si no se setean los parametros `sort` y `order` se devuelve la lista de atracciones ordenadas por id de forma ascendente. 
 
 ```http
 GET /api/atraccion?sort={columna}&order={valor}
@@ -89,7 +89,7 @@ GET /api/atraccion?page={valor}&limit={valor}
   | `limit`    | limit=3   | Cantidad de atracciones por página.| 5 |
 
 ### Filtrado
-Puedes filtrar los resultados según el valor de una columna específica.
+Puedes filtrar los resultados por una o varias de algunas de las siguientes columnas: `name` `location` `description` `open_time` `close_time` `website` `country`
 
 ```http
 GET /api/atraccion?{campo}={valor}
