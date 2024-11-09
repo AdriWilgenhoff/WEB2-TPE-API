@@ -67,17 +67,21 @@ Si los parámetros `order`, `sort`, `page`, o `limit` no se especifican o están
 ### Orden
 Puedes ordenar los resultados por cualquier columna y especificar el orden ascendente o descendente. Si no se setean los parametros `sort` y `order` se devuelve la lista de atracciones ordenadas por id de forma ascendente.
 
-`GET /api/atraccion?sort={columna}&order={valor}`
+```http
+GET /api/atraccion?sort={columna}&order={valor}
+```
 
   | Parámetro  | Ejemplo     | Descripción | Valor por defecto |
   |----------  |----------   |----------|----------|
-  | `sort`     | sort=nombre | Ordena los resultados por la columna especificada en `{columna}` de la tabla.| id |
+  | `sort`     | sort=name | Ordena los resultados por la columna especificada en `{columna}` de la tabla.| id |
   | `order`    | order=desc  | Especidfica el sentido del orden. Valores permitidos: `asc` (ascendente) o `desc` (descendente).| asc |
 
 ### Paginación
 Permite limitar la cantidad de resultados por página y seleccionar la página deseada. El valor por defecto del limite se utiliza cuando se setea el parametro `page`.
 
-`GET /api/atraccion?page={valor}&limit={valor}`
+```http
+GET /api/atraccion?page={valor}&limit={valor}
+```
 
   | Parámetro | Ejemplo | Descripción | Valor por defecto |
   |----------|----------|----------|----------|
@@ -87,13 +91,16 @@ Permite limitar la cantidad de resultados por página y seleccionar la página d
 ### Filtrado
 Puedes filtrar los resultados según el valor de una columna específica.
 
-`GET /api/atraccion?{campo}={valor}`
+```http
+GET /api/atraccion?{campo}={valor}
+```
   | Parámetro |  Ejemplo | Descripción | Valor por defecto |
   |----------|----------|----------|----------|
   | `{campo}`    |  name=Big Ben  | Columna y valor de la tabla por la cual se desea filtrar.| "" (sin valor) |
 
 A continuación, un ejemplo de cómo combinar todos los parámetros de consulta en una sola solicitud:
-```
+
+```http
 GET /api/atraccion?price=10.00&sort=name&order=asc&page=1&limit=3
 ``` 
 
