@@ -32,18 +32,22 @@ GET /api/atraccion
 Response
 ```json
 [
-    {
-        "id": 1,
-        "name": "Torre Eiffel",
-        "location": "Av. Gustave Eiffel, 75007 Paris",
-        "price": "25.00",
-        "path_img": "images/66fdb1d10938c.jpg",
-        "description": "La Torre Eiffel es el monumento más.....",
+     {
+        "id": 5,
+        "name": "Torre de Londres",
+        "location": "London EC3N 4AB",
+        "price": "34.80",
+        "path_img": "images/66fdb1fa945f8.jpg",
+        "description": "La Torre de Londres es uno de los monumentos históricos.....",
         "open_time": "09:00:00",
-        "close_time": "23:00:00",
-        "website": "https://www.toureiffel.paris",
-        "country_id": 2,
-        "country": "Francia"
+        "close_time": "17:30:00",
+        "website": "https://www.hrp.org.uk/tower-of-london/",
+        "country": {
+            "id": 1,
+            "name": "Inglaterra",
+            "language": "Inglés",
+            "currency": "Libra Esterlina (£)"
+        }
     },
     {
         "id": 2,
@@ -58,10 +62,10 @@ Response
 ### Parámetros de consulta
 A continuación, se detallan los parámetros disponibles para ordenar, paginar y filtrar los resultados en la API de atracciones turísticas.
 
-Si los parámetros `filter`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán los siguientes valores por defecto:
+Si los parámetros `order`, `sort`, `page`, o `limit` no se especifican o están incompletos, se aplicarán los siguientes valores por defecto:
 
 ### Orden
-Puedes ordenar los resultados por cualquier columna y especificar el orden ascendente o descendente.
+Puedes ordenar los resultados por cualquier columna y especificar el orden ascendente o descendente. Si no se setean los parametros `sort` y `order` se devuelve la lista de atracciones ordenadas por id de forma ascendente.
 
 `GET /api/atraccion?sort={columna}&order={valor}`
 
@@ -71,27 +75,26 @@ Puedes ordenar los resultados por cualquier columna y especificar el orden ascen
   | `order`    | order=desc  | Especidfica el sentido del orden. Valores permitidos: `asc` (ascendente) o `desc` (descendente).| asc |
 
 ### Paginación
-Permite limitar la cantidad de resultados por página y seleccionar la página deseada.
+Permite limitar la cantidad de resultados por página y seleccionar la página deseada. El valor por defecto del limite se utiliza cuando se setea el parametro `page`.
 
 `GET /api/atraccion?page={valor}&limit={valor}`
 
   | Parámetro | Ejemplo | Descripción | Valor por defecto |
   |----------|----------|----------|----------|
-  | `page`    |  page=2   | Número de página que se desea mostrar.| 1 |
-  | `limit`    | limit=3   | Cantidad de atracciones por página.| 3 |
+  | `page`    |  page=2   | Número de página que se desea mostrar.| |
+  | `limit`    | limit=3   | Cantidad de atracciones por página.| 5 |
 
 ### Filtrado
 Puedes filtrar los resultados según el valor de una columna específica.
 
-`GET /api/atraccion?filter={valor}&value={valor}`
+`GET /api/atraccion?{campo}={valor}`
   | Parámetro |  Ejemplo | Descripción | Valor por defecto |
   |----------|----------|----------|----------|
-  | `filter`    |  filter=nombre   | Columna de la tabla por la cual se desea filtrar.| nombre |
-  | `value`    | value=Big Ben   | Valor de búsqueda para aplicar en la columna especificada.| "" (sin valor) |
+  | `{campo}`    |  name=Big Ben  | Columna y valor de la tabla por la cual se desea filtrar.| "" (sin valor) |
 
 A continuación, un ejemplo de cómo combinar todos los parámetros de consulta en una sola solicitud:
 ```
-GET /api/atraccion?filter=nombre&filterValue=BigBen&sort=nombre&order=asc&page=1&limit=3
+GET /api/atraccion?price=10.00&sort=name&order=asc&page=1&limit=3
 ``` 
 
 ## Obtener Atracción (GET)
