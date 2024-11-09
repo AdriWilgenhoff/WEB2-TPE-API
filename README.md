@@ -13,13 +13,13 @@ Este proyecto consiste en una API REST para gestionar atracciones turísticas, p
 ## Documentación de la API
 
 ### Endpoints 
-|       Request         | Método |                    Endpoint                       | Status |
-|-----------------------|--------|---------------------------------------------------|--------|
-| Listar atracciones    |  GET   | http://localhost/WEB2-TPE-API/api/atraccion       | 200    |
-| Obtener atraccion     |  GET   | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 200    |
-| Crear atraccion       |  POST  | http://localhost/WEB2-TPE-API/api/atraccion       | 201    |
-| Editar atraccion      |  PUT   | http://localhost/WEB2-TPE-API/api/atraccion/:id   | 201    |
-| Obtener token         |  GET   | http://localhost/WEB2-TPE-API/api/user/token      | 200    | 
+|       Request         | Método |                    Endpoint                       | Status Success |  Status Error   |
+|-----------------------|--------|---------------------------------------------------|----------------| ----------------|
+| Listar atracciones    |  GET   | http://localhost/WEB2-TPE-API/api/atraccion       |     200-204    |        -        |
+| Obtener atraccion     |  GET   | http://localhost/WEB2-TPE-API/api/atraccion/:id   |       200      |       404       |
+| Crear atraccion       |  POST  | http://localhost/WEB2-TPE-API/api/atraccion       |       201      |   400-401-500   |
+| Editar atraccion      |  PUT   | http://localhost/WEB2-TPE-API/api/atraccion/:id   |       201      | 400-401-404-500 |
+| Obtener token         |  GET   | http://localhost/WEB2-TPE-API/api/user/token      |       200      |       400       |
 
 ### Detalle de Endpoints
 
