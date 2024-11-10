@@ -96,7 +96,7 @@ GET /api/atraccion?{campo}={valor}
 ```
   | Parámetro |  Ejemplo | Descripción | Valor por defecto |
   |----------|----------|----------|----------|
-  | `{campo}`    |  name=Big Ben  | Columna y valor de la tabla por la cual se desea filtrar.| "" (sin valor) |
+  | `{campo}` `{valor}`   |  name=Big Ben  | Columna y valor de la tabla por la cual se desea filtrar.| "" (sin valor) |
 
 A continuación, un ejemplo de cómo combinar todos los parámetros de consulta en una sola solicitud:
 
@@ -193,8 +193,8 @@ POST /api/user/token
 Credenciales (Basic Auth)
 
 Los datos requeridos para la generacion del mismo se deberan completar en los campos que ofrece Authorization, Type: Basic Auth. 
-- `username`: webadmin
-- `password`: admin
+- `username` webadmin
+- `password` admin
 
 Response
 
