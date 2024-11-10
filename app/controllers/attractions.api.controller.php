@@ -74,6 +74,9 @@ class AttractionApiController
 	
 	// api/atraccion/:id (DELETE)
     public function delete($req, $res) {
+		if(!$res->user) {
+            return $this->view->response("No autorizado", 401);
+        }
         $id = $req->params->id;
         $attraction = $this->model->getAttractionById($id);
         if (!$attraction)
@@ -142,9 +145,10 @@ class AttractionApiController
         if ($validations)
             return $this->view->response('Faltan completar datos', 400);
 		
-		if (isset($req->body->path_img)) {
+		if (isset($req->body->path_img))
             $image = $this->validateImage($req->body->path_img);
-        }else $image = null;
+        else 
+			$image = null;
 		
 		$officialWebsite = $this->validateAndFormatWebsite($req->body->website);
         $name = $req->body->name;
@@ -209,4 +213,5 @@ class AttractionApiController
 		}
 		return false;
 	}
+		
 }

@@ -1,5 +1,10 @@
 <?php
+	
+	require_once './config/config.php';
+
     function createJWT($payload) {
+		
+		$payload['exp'] = time() + TIMEOUT_EXPIRATION_TOKEN; 
         // Header
         $header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);
         // Payload
@@ -9,7 +14,7 @@
         $header = base64_encode($header);
         $header = str_replace(['+', '/', '='], ['-', '_', ''], $header);
         $payload = base64_encode($payload);
-        $payload = str_replace(['+', '/', '='], ['-', '_', ''], $payload);
+        $payload = str_replace(['+', '/', '='], ['-', '_', ''], $payload); 
 
         // Firma
         $signature = hash_hmac('sha256', $header . "." . $payload, 'mi1secreto', true);
@@ -18,7 +23,14 @@
 
         // JWT
         $jwt = $header . "." . $payload . "." . $signature;
-        return $jwt;
+		
+		$response = [
+			'token_type' => 'Bearer',
+			'expires_in' => TIMEOUT_EXPIRATION_TOKEN,
+			'access_token' => $jwt
+		];
+		
+        return $response;
     }
 
     function validateJWT($jwt) {

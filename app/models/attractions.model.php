@@ -46,7 +46,7 @@ class AttractionModel extends Model {
 
     function addAttraction($name, $location, $price, $description, $open_time, $close_time, $website, $country_id, $path_img) {
 		if ($path_img)
-            $pathImg = $path_img;//$this->uploadImage($path_img);
+            $pathImg = $this->uploadImage($path_img);
 		else
 			$pathImg = "images/imagen-no-disponible.png";
 		$query = $this->db->prepare("INSERT INTO attractions (name, location, price, path_img, description, open_time, close_time, website, country_id) VALUES(?,?,?,?,?,?,?,?,?)");
@@ -62,7 +62,7 @@ class AttractionModel extends Model {
 
     function updateAttraction($name, $location, $price, $description, $open_time, $close_time, $website, $country_id, $id, $path_img) {
 		if ($path_img){
-            $pathImg = $path_img;//$this->uploadImage($path_img);
+            $pathImg = $this->uploadImage($path_img);
 			$query = $this->db->prepare("UPDATE attractions SET name = ?, location = ?, price = ? , path_img = ?, description = ?, open_time = ?, close_time = ?, website = ?, country_id = ? WHERE id = ?");
 			$query->execute([$name, $location, $price, $pathImg, $description, $open_time, $close_time, $website, $country_id, $id]);
 		}else{
@@ -72,11 +72,11 @@ class AttractionModel extends Model {
 		return $query->rowCount();
     }
 	
-	/*private function uploadImage ($image){
-		$newFilePath = "images/" . uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION)); 
-        move_uploaded_file($image['tmp_name'], $newFilePath);
+	private function uploadImage ($image){
+		$newFilePath = "images/" . uniqid() . "." . strtolower(pathinfo($image, PATHINFO_EXTENSION)); 
+		copy($image, $newFilePath);
         return $newFilePath;
-    }*/
+    }
 	
 	public function getAttractionByName($name) {
         $query = $this->db->prepare("SELECT * FROM attractions WHERE name = ?");

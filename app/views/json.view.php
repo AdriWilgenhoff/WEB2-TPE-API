@@ -5,7 +5,11 @@
             header("Content-Type: application/json");
             $statusText = $this->_requestStatus($status);
             header("HTTP/1.1 $status $statusText");
-            echo json_encode($data);
+			
+			if ($status == 200 || $status == 201)
+				echo json_encode($data);
+			else
+				echo json_encode(['message' => $data, 'code' => $status]);
         }
 
         private function _requestStatus($code) {
