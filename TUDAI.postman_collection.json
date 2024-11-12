@@ -30,13 +30,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/atraccion/2",
+					"raw": "{{base_url}}/atraccion/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"atraccion",
-						"2"
+						"1"
 					],
 					"query": [
 						{
@@ -100,7 +100,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/atraccion?sort=name&order=desc",
+					"raw": "{{base_url}}/atraccion?sort=price&order=desc",
 					"host": [
 						"{{base_url}}"
 					],
@@ -110,7 +110,7 @@
 					"query": [
 						{
 							"key": "sort",
-							"value": "name"
+							"value": "price"
 						},
 						{
 							"key": "order",
@@ -201,6 +201,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImVtYWlsIjoid2ViYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzEyMDMwMTIsImV4cCI6MTczMTIwMzYxMiwiU2FsdWRvIjoiSG9sYSJ9._nDpMQpcMeTphFBl56vZevU1yKIMEgVF4tFPhrOXI38",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -213,13 +223,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/atraccion/6",
+					"raw": "{{base_url}}/atraccion/99",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"atraccion",
-						"6"
+						"99"
 					]
 				},
 				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
@@ -241,14 +251,31 @@
 						"type": "text/javascript",
 						"packages": {}
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Torre Eiffel\",\n    \"location\": \"Av. Gustave Eiffel, 75007 Paris\",\n    \"price\": \"25.00\",\n    \"path_img\": \"images/66fdb1d10938c.jpg\",\n    \"description\": \"La Torre Eiffel es el monumento más visitado de todo el mundo con más de 7 millones de visitantes anuales, por lo que se convierte en uno imprescindible que ver en París. Esta gran torre de hierro mide 300 metros de altura, lo que hace que se puede ver desde varios puntos de la ciudad. Para disfrutar de su silueta inconfundible cuatro lugares perfectos son Campo de Marte, la Pasarela Debilly, los Jardines del Trocadero y desde la rue de l’Université.\",\n    \"open_time\": \"09:00:00\",\n    \"close_time\": \"23:00:00\",\n    \"website\": \"https://www.toureiffel.paris\",\n    \"country_id\": 2\n}",
+					"raw": "{\n    \"name\": \"Torre Eiffel\",\n    \"location\": \"Av. Gustave Eiffel, 75007 Paris\",\n    \"price\": \"25.00\",\n    \"path_img\": \"images/6732c43ec4276c.jpg\",\n    \"description\": \"La Torre Eiffel es el monumento más visitado de todo el mundo con más de 7 millones de visitantes anuales, por lo que se convierte en uno imprescindible que ver en París. Esta gran torre de hierro mide 300 metros de altura, lo que hace que se puede ver desde varios puntos de la ciudad. Para disfrutar de su silueta inconfundible cuatro lugares perfectos son Campo de Marte, la Pasarela Debilly, los Jardines del Trocadero y desde la rue de l’Université.\",\n    \"open_time\": \"09:00:00\",\n    \"close_time\": \"23:00:00\",\n    \"website\": \"https://www.toureiffel.paris\",\n    \"country_id\": 2\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -287,11 +314,21 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Test Atraccion\",\n    \"location\": \"Location Test\",\n    \"price\": \"25.00\",\n    \"description\": \"Test\",\n    \"open_time\": \"09:00:00\",\n    \"close_time\": \"23:00:00\",\n    \"website\": \"https://www.toureiffel.paris\",\n    \"country_id\": 2\n}",
+					"raw": "{\n    \"name\": \"La Movedizaaa\",\n    \"location\": \"Buenos Aires, Tandil\",\n    \"price\": \"00.00\",\n    \"path_img\": \"C:\\\\Users\\\\adrian_wilgenhoff\\\\OneDrive - Estrategias Diferenciadas SA\\\\Desktop\\\\Outout methods.png\",\n    \"description\": \"Una piedra que se cayo y pusieron una replica\",\n    \"open_time\": \"09:00:00\",\n    \"close_time\": \"23:00:00\",\n    \"website\": \"https://www.laMove.com.ar\",\n    \"country_id\": 2\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -313,6 +350,23 @@
 		},
 		{
 			"name": "GetToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonResponse = JSON.parse(responseBody);\r",
+							"var token = jsonResponse.access_token;\r",
+							"\r",
+							"// Guardar el token en la variable de entorno\r",
+							"pm.environment.set(\"Token\", token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "basic",

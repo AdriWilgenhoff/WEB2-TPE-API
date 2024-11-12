@@ -94,13 +94,14 @@ class AttractionApiController
         $attraction = $this->model->getAttractionById($id);
         if (!$attraction)
             return $this->view->response("La atraccion con el id=$id no existe", 404);
-         // valido los datos
-		 $validations = $this->validateAndSanitizeFields(['name', 'location', 'price', 'description', 'open_time', 'close_time', 'website', 'country_id']);
-		 
-         if ($validations) {
+         
+		$validations = $this->validateAndSanitizeFields(['name', 'location', 'price', 'description', 'open_time', 'close_time', 'website', 'country_id'],$req);
+		 	 
+        if (!$validations) {
             return $this->view->response('Faltan completar datos', 400);
         }
-		if (isset($req->body->path_img)) {
+		
+		if (isset($req->body->path_img) && $req->body->path_img != $attraction->path_img) {
             $image = $this->validateImage($req->body->path_img);
         }else $image = null;
 		
@@ -124,7 +125,6 @@ class AttractionApiController
 
         $modify = $this->model->updateAttraction($name, $location, $price, $description, $open_time,$close_time,$website,$country_id,$id,$image);
 
-        // obtengo la tarea modificada y la devuelvo en la respuesta
         if ($modify) {
 			 $attraction = $this->model->getAttractionById($id);
 			 return $this->view->response($attraction, 200); 
@@ -132,17 +132,16 @@ class AttractionApiController
 		return $this->view->response('No se modifico la atraccion', 500);		
 	}
 	
-	//**************************************************************************
-	
+	// /api/atraccion/ (POST)
     public function create($req, $res){
 		
 		if(!$res->user) {
             return $this->view->response("No autorizado", 401);
         }
-         // valido los datos
-	    $validations = $this->validateAndSanitizeFields(['name', 'location', 'price', 'description', 'open_time', 'close_time', 'website', 'country_id']);
-		 
-        if ($validations)
+
+	    $validations = $this->validateAndSanitizeFields(['name', 'location', 'price', 'description', 'open_time', 'close_time', 'website', 'country_id'], $req);
+		
+        if (!$validations)
             return $this->view->response('Faltan completar datos', 400);
 		
 		if (isset($req->body->path_img))
@@ -169,27 +168,26 @@ class AttractionApiController
 
         $id = $this->model->addAttraction($name, $location, $price, $description, $open_time,$close_time,$website,$country_id,$image);
 
-        // obtengo la tarea agregada y la devuelvo en la respuesta
         if ($id) {
 			 $attraction = $this->model->getAttractionById($id);
 			 return $this->view->response($attraction, 201); 
 		}
 		return $this->view->response('No se agrego la atraccion', 500);		
 	}
-		
-	//****************************************************************************//
 
-    function validateAndSanitizeFields($fields){
+
+    function validateAndSanitizeFields($fields, $req){
         foreach ($fields as $field) {
-            if (!isset($req->body->$field) || empty($req->body->$field))
-                return false;
+            if (!isset($req->body->$field) || empty($req->body->$field)){
+				return false;
+			}
             $req->body->$field = htmlspecialchars($req->body->$field, ENT_QUOTES, 'UTF-8');
         }
         return true;
     }
 
     private function validateImage($img){
-        if (strpos($img, ".jpg") || strpos($img, ".png") || strpos($img, ".jpeg")) {
+        if (file_exists($img) &&(strpos($img, ".jpg") || strpos($img, ".png") || strpos($img, ".jpeg"))) {
             return $img;
         }
         return null;

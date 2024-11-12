@@ -3,6 +3,7 @@
     require_once './app/models/user.model.php';
     require_once './app/views/json.view.php';
     require_once './libs/jwt.php';
+	require_once './config/config.php';
 
     class UserApiController {
         private $model;
@@ -37,7 +38,7 @@
                 'email' => $user->username,
                 'role' => 'admin',
                 'iat' => time(),
-                'exp' => time() + 60,
+                'exp' => time() + TIMEOUT_EXPIRATION_TOKEN,
                 'Saludo' => 'Hola',
             ));
             return $this->view->response($token);
