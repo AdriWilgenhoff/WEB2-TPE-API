@@ -89,7 +89,8 @@ GET /api/atraccion?page={valor}&limit={valor}
   | `limit`    | limit=3   | Cantidad de atracciones por página.| 5 |
 
 ### Filtrado
-Puedes filtrar los resultados por una o varias de algunos de los siguientes campos: `name` `location` `description` `open_time` `close_time` `website` `country` (Nombre del Pais)
+Puedes filtrar los resultados por una o varias de algunos de los siguientes campos: `name` `location` `description` `open_time` `close_time` `website` `price`
+Además se puede filtrar por el nombre del País `country`. Países disponibles `Inglaterra` `Mexico` `Francia` `Italia` `Argentina` `Chile`
 
 ```http
 GET /api/atraccion?{campo}={valor}
