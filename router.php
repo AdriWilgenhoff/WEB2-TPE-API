@@ -10,11 +10,11 @@
 
     #                 endpoint        verbo      controller              metodo
     $router->addRoute('atraccion'      ,            'GET',     'AttractionApiController',   'getAll');
-    $router->addRoute('atraccion/:id'  ,            'GET',     'AttractionApiController',   'getByID'   );
+    $router->addRoute('atraccion/:id'  ,            'GET',     'AttractionApiController',   'getByID');
     $router->addRoute('atraccion/:id'  ,            'DELETE',  'AttractionApiController',   'delete');
-    $router->addRoute('atraccion'  ,                'POST',    'AttractionApiController',   'create');
+    $router->addRoute('atraccion'      ,            'POST',    'AttractionApiController',   'create');
     $router->addRoute('atraccion/:id'  ,            'PUT',     'AttractionApiController',   'update');
-    
+ 
     $router->addRoute('user/token'    ,            'POST',     'UserApiController',   'getToken');
 
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

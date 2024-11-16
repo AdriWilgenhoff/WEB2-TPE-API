@@ -2,6 +2,7 @@
 require_once './app/models/attractions.model.php';
 require_once './app/views/json.view.php';
 require_once './app/models/country.model.php';
+require_once './config/config.php';
 
 class AttractionApiController
 {
@@ -36,12 +37,12 @@ class AttractionApiController
         if(isset($req->query->sort) && in_array($req->query->sort, $fieldsToOrder))
             $sort = $req->query->sort;
 		else
-			$sort = 'id';
+			$sort = SORT_FIELD_DEFAULT;
 
         if(isset($req->query->order) && ($req->query->order== 'asc' || $req->query->order== 'desc'))
             $order = $req->query->order;
 		else	
-			$order = 'asc';
+			$order = ORDER_DIRECTION_DEFAULT;
 		
 		//paginacion - numero de pagina
 		$page = false;
@@ -52,7 +53,7 @@ class AttractionApiController
         if(isset($req->query->limit) && ctype_digit($req->query->limit) )
             $limit = $req->query->limit;
 		else 
-			$limit = 5;
+			$limit = PAGINATION_LIMIT_DEFAULT;
 
 		//filtro
 		$fieldsToFilter = ['name', 'location', 'price', 'description', 'open_time', 'close_time','website','country'];
@@ -82,7 +83,7 @@ class AttractionApiController
         if (!$attraction)
             return $this->view->response("La atraccion con el id=$id no existe", 404);
         $this->model->deleteAttraction($id);
-        $this->view->response("La atraccion con el id=$id se eliminó con éxito");
+        $this->view->response("La atraccion con el id=$id se eliminó con éxito",200);
     }
 	
 	// api/atraccion/:id (PUT)

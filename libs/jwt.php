@@ -4,7 +4,6 @@
 
     function createJWT($payload) {
 		
-		//$payload['exp'] = time() + TIMEOUT_EXPIRATION_TOKEN; 
         // Header
         $header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);
         // Payload
