@@ -90,6 +90,7 @@ GET /api/atraccion?page={valor}&limit={valor}
 
 ### Filtrado
 Puedes filtrar los resultados por una o varias de algunos de los siguientes campos: `name` `location` `description` `open_time` `close_time` `website` `price`
+
 Además se puede filtrar por el nombre del País `country`. Países disponibles `Inglaterra` `Mexico` `Francia` `Italia` `Argentina` `Chile`
 
 ```http
